@@ -1,0 +1,85 @@
+{
+    "dependencies": [
+        {
+            "name": "hashlib",
+            "version": "2.4.0",
+            "vulns": []
+        },
+        {
+            "name": "mimetypes",
+            "version": "0.0.1",
+            "vulns": []
+        },
+        {
+            "name": "functools",
+            "version": "0.5",
+            "vulns": []
+        },
+        {
+            "name": "itertools",
+            "version": "0.1.2",
+            "vulns": []
+        },
+        {
+            "name": "ujson",
+            "version": "5.10.0",
+            "vulns": []
+        },
+        {
+            "name": "inspect",
+            "version": "0.1.2",
+            "vulns": []
+        },
+        {
+            "name": "cherrypy",
+            "version": "18.10.0",
+            "vulns": []
+        },
+        {
+            "name": "cheroot",
+            "version": "10.0.1",
+            "vulns": []
+        },
+        {
+            "name": "paste",
+            "version": "3.10.1",
+            "vulns": []
+        },
+        {
+            "name": "fapws",
+            "version": "0.11.dev",
+            "vulns": []
+        },
+        {
+            "name": "uvloop",
+            "version": "0.19.0",
+            "vulns": []
+        },
+        {
+            "name": "colorama",
+            "version": "0.4.6",
+            "vulns": []
+        },
+        {
+            "name": "bjoern",
+            "version": "3.2.1",
+            "vulns": []
+        },
+        {
+            "name": "filelock",
+            "version": "3.18.0",
+            "vulns": []
+        },
+        {
+            "name": "requests-file",
+            "version": "2.1.0",
+            "vulns": []
+        },
+        {
+            "name": "eventlet",
+            "version": "0.38.2",
+            "vulns": []
+        }
+    ],
+    "fixes": []
+}
